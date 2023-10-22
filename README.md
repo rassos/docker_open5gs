@@ -37,16 +37,16 @@ RF simulated setups:
 ```
 git clone https://github.com/herlesupreeth/docker_open5gs
 cd docker_open5gs/base
-docker build --no-cache --force-rm -t docker_open5gs .
+sudo docker build --no-cache --force-rm -t docker_open5gs .
 
 cd ../ims_base
-docker build --no-cache --force-rm -t docker_kamailio .
+sudo docker build --no-cache --force-rm -t docker_kamailio .
 
 cd ../srslte
-docker build --no-cache --force-rm -t docker_srslte .
+sudo docker build --no-cache --force-rm -t docker_srslte .
 
 cd ../srsran
-docker build --no-cache --force-rm -t docker_srsran .
+sudo docker build --no-cache --force-rm -t docker_srsran .
 
 cd ../ueransim
 docker build --no-cache --force-rm -t docker_ueransim .
@@ -59,8 +59,8 @@ cd ..
 set -a
 source .env
 sudo ufw disable
-docker-compose -f 4g-volte-deploy.yaml build
-docker-compose -f sa-deploy.yaml build
+sudo docker compose -f 4g-volte-deploy.yaml build
+sudo docker compose -f sa-deploy.yaml build
 sudo sysctl -w net.ipv4.ip_forward=1
 sudo cpupower frequency-set -g performance
 ```
@@ -69,10 +69,10 @@ sudo cpupower frequency-set -g performance
 
 ```
 # 4G Core Network + IMS + SMS over SGs
-docker-compose -f 4g-volte-deploy.yaml up
+sudo docker compose -f 4g-volte-deploy.yaml up
 
 # srsRAN eNB using SDR (OTA)
-docker-compose -f srsenb.yaml up -d && docker container attach srsenb
+sudo docker compose -f srsenb.yaml up -d && docker container attach srsenb
 
 # srsRAN ZMQ eNB (RF simulated)
 docker-compose -f srsenb_zmq.yaml up -d && docker container attach srsenb_zmq
