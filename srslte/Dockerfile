@@ -57,6 +57,10 @@ RUN add-apt-repository ppa:ettusresearch/uhd && \
     apt update && apt -y install libuhd-dev uhd-host && \
     uhd_images_downloader
 
+# Bladerf drivers
+RUN add-apt-repository ppa:nuandllc/bladerf && \
+    apt update && apt -y install bladerf libbladerf-dev
+
 # Get srsGUI, compile and install
 RUN git clone https://github.com/srsran/srsGUI && \
     cd srsGUI/ && \
